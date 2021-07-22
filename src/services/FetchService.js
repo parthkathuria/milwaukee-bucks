@@ -20,6 +20,12 @@ let getVoters = function () {
   .then((res) => res.json());
 };
 
+let getVotersByEmail = function (email) {
+  return fetch(enpointURL + "/voters?email=" + email)
+  .then(checkHttpStatus)
+  .then((res) => res.json());
+};
+
 let getElections = function () {
   return fetch(enpointURL + "/elections")
   .then(checkHttpStatus)
@@ -32,7 +38,7 @@ let getElectionById = function (id) {
   .then((res) => res.json());
 };
 
-let createElections = function (voterId, title, questions) {
+let createElections = function (title, questions) {
   let question_list = questions.map((q, index) => ({
     "id": index+1,
     "title": q,
@@ -40,7 +46,6 @@ let createElections = function (voterId, title, questions) {
     "no": 0
   }))
   let election = {
-    "voterId": voterId,
     "createdAt": getCreateDate(),
     "title": title,
     "questions": question_list
@@ -56,4 +61,20 @@ let createElections = function (voterId, title, questions) {
   .then((res) => res.json())
 };
 
-export { getVoters, getElections, createElections };
+let deleteVoter = function(id) {
+  return fetch(enpointURL + "/voters/"+ id, {
+    method: 'DELETE',
+  })
+  .then(checkHttpStatus)
+  .then((res) => res.json())
+}
+
+let deleteMultipleVoters = function(ids) {
+  return Promise.all(ids.map(id => (fetch(enpointURL + "/voters/"+ id, {
+    method: 'DELETE',
+  }).then(checkHttpStatus)
+  .then((res) => res.json())
+  )))
+}
+
+export { getVoters, getElections, createElections, getElectionById, deleteMultipleVoters, getVotersByEmail };
