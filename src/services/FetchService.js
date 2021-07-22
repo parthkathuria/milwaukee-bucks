@@ -26,6 +26,12 @@ let getElections = function () {
   .then((res) => res.json());
 };
 
+let getElectionById = function (id) {
+  return fetch(enpointURL + "/elections/" + id)
+  .then(checkHttpStatus)
+  .then((res) => res.json());
+};
+
 let createElections = function (voterId, title, questions) {
   let question_list = questions.map((q, index) => ({
     "id": index+1,
