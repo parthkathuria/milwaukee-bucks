@@ -7,7 +7,7 @@ const VoterForm = ({ editableVoterId }) => {
   let { id } = useParams();
 
   const [voter, setVoter] = useState(
-    id
+    id !== ":id"
       ? data.voters[parseInt(id) - 1]
       : {
           firstName: "",

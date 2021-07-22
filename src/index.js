@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger());
 }
 const enhancer = composeEnhancers(applyMiddleware(...middleware));
-const store = createStore(reducer, enhancer);
+export const store = createStore(reducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>

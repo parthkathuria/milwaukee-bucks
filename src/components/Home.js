@@ -1,12 +1,10 @@
 import VoterList from "./Voter/VoterList";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import ElectionList from "./elections/ElectionList";
 
-//conditional if registered or something show this
-
-function Home() {
+function Home({ elections }) {
   const [showVoters, setShowVoters] = useState(false);
-
   return (
     <>
       <h2>Registered Voters</h2>
@@ -20,7 +18,15 @@ function Home() {
       </Button>
       {showVoters && <VoterList />}
       <hr />
-      <h2>Open Elections</h2>
+      <h2>Elections</h2>
+      {elections.length ? (
+        <ElectionList elections={elections} />
+      ) : (
+        <p>
+          No Elections created yet. Click <b>Create Elections</b> link to create
+          one.
+        </p>
+      )}
     </>
   );
 }
