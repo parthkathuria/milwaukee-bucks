@@ -10081,6 +10081,11 @@
     "indent-string" "^4.0.0"
     "strip-indent" "^3.0.0"
 
+"redux-thunk@^2.3.0":
+  "integrity" "sha1-UcLBmhhe1Rh6qpotCLZm0NZGdiI="
+  "resolved" "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/redux-thunk/-/redux-thunk-2.3.0.tgz"
+  "version" "2.3.0"
+
 "redux@^4.0.0", "redux@^4.1.0":
   "integrity" "sha1-6wSWefL1I8N58a/zRchhLylMiNQ="
   "resolved" "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/redux/-/redux-4.1.0.tgz"
