@@ -1,4 +1,5 @@
-const enpointURL = "http://localhost:3001";
+//const enpointURL = "http://localhost:3001";
+const enpointURL =  "http://127.0.0.1:3000"
 
 function checkHttpStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -48,10 +49,40 @@ let createElections = function (title, questions) {
   let election = {
     "createdAt": getCreateDate(),
     "title": title,
-    "questions": question_list
+    "questions": question_list,
+    "voterList":[],
   }
   return fetch(enpointURL + "/elections", {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(election)
+  })
+  .then(checkHttpStatus)
+  .then((res) => res.json())
+};
+
+let updateElections = function (id, createdAt, title, questions, voterList, results, voterEmail) {
+  // id, createdAt, title, questions, voterList: election object's fields
+  // results: 1 Yes 0 No [1,0,0]
+  var questions_list = JSON.parse(JSON.stringify(questions))
+
+  for (var i = 0; i < questions_list.length; i++) {
+    if(results[i] === 1) {  //yes
+      questions_list[i].yes += 1
+    } else {
+      questions_list[i].no += 1
+    }
+  } 
+  let election = {
+    "title": title,
+    "createdAt": createdAt,
+    "questions": questions_list,
+    "voterList":[...voterList, voterEmail],
+  }
+  return fetch(enpointURL + "/elections/" + id, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -77,4 +108,4 @@ let deleteMultipleVoters = function(ids) {
   )))
 }
 
-export { getVoters, getElections, createElections, getElectionById, deleteMultipleVoters, getVotersByEmail };
+export { getVoters, getElections, createElections, getElectionById, deleteMultipleVoters, getVotersByEmail, deleteVoter, updateElections};
