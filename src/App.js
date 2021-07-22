@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Home from "./components/Home";
 import { Row } from "react-bootstrap";
+import VoterForm from "./components/Voter/VoterForm";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             </Navbar.Brand>
           </LinkContainer>
           <Nav className="me-auto">
-            <LinkContainer to="/register">
+            <LinkContainer to="/register/:id">
               <Nav.Link>Register</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/create-election">
@@ -39,9 +40,8 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/register">
-              <h2>Register to Vote</h2>
-              <hr />
+            <Route exact path="/register/:id">
+              <VoterForm />
             </Route>
             <Route>
               <h2>Create Election</h2>

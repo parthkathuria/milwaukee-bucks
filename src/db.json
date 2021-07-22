@@ -1,0 +1,56 @@
+{
+  "voters": [
+    {
+      "id": 1,
+      "firstName": "a",
+      "lastName": "Kathuria",
+      "address": "123 Temp st.",
+      "city": "Mountain View",
+      "birthDate": "12/13/4134",
+      "email": "a@intuit.com",
+      "phone": "123445566"
+    },
+    {
+      "id": 2,
+      "firstName": "b",
+      "lastName": "Katerewrsdfhuria",
+      "address": "123 Temp st.",
+      "city": "Mountain View",
+      "birthDate": "12/13/4134",
+      "email": "b@intuit.com",
+      "phone": "123445566"
+    },
+    {
+      "id": 3,
+      "firstName": "c",
+      "lastName": "Katsdafdsahuria",
+      "address": "12dsfdsast.",
+      "city": "Mountadsafdsafin View",
+      "birthDate": "12/13/4134",
+      "email": "c@intuit.com",
+      "phone": "123445566"
+    }
+  ],
+  "elections": [
+    {
+      "id": 1,
+      "voterId": 1,
+      "createdAt": "07/22/2021",
+      "title": "Election 1",
+      "questions": [
+        {
+          "id": 1,
+          "title": "What is the question?",
+          "yes": 0,
+          "no": 0
+        },
+        {
+          "id": 2,
+          "title": "What is the next question?",
+          "yes": 0,
+          "no": 0
+        }
+      ]
+    }
+  ]
+}
