@@ -1,12 +1,47 @@
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import { Route, Switch } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import Home from "./components/Home";
+import { useState } from "react";
 import { Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
+import { Route, Switch } from "react-router-dom";
+import NewElectionForm from "./components/elections/newElection/NewElectionForm";
+import Home from "./components/Home";
+import { useHistory } from "react-router-dom";
+
+function getCreateDate() {
+  return new Date()
+    .toLocaleString()
+    .split(/\D/)
+    .slice(0, 3)
+    .map((num) => num.padStart(2, "0"))
+    .join("/");
+}
 
 function App() {
+  const history = useHistory();
+  const [elections, setElections] = useState([]);
+
+  function addNewElection(title, questions) {
+    let question_list = questions.map((q, index) => ({
+      id: index + 1,
+      title: q,
+      yes: 0,
+      no: 0,
+    }));
+
+    let election = {
+      id:
+        elections.length === 0
+          ? 0
+          : Math.max(...elections.map((c) => c.id)) + 1,
+      createdAt: getCreateDate(),
+      title: title,
+      questions: question_list,
+    };
+    setElections([...elections, election]);
+    history.push("/");
+  }
   return (
     <div>
       <Navbar bg="success" variant="light">
@@ -37,15 +72,14 @@ function App() {
         <Row>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home elections={elections} />
             </Route>
             <Route exact path="/register">
               <h2>Register to Vote</h2>
               <hr />
             </Route>
             <Route>
-              <h2>Create Election</h2>
-              <hr />
+              <NewElectionForm addNewElection={addNewElection} />
             </Route>
           </Switch>
         </Row>
