@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import thunk from "redux-thunk";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
+import { compose } from "redux";
 
 const middleware = [thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
