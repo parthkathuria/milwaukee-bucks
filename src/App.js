@@ -1,45 +1,24 @@
-import { useState } from "react";
 import { Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import { Route, Switch } from "react-router-dom";
-import NewElectionForm from "./components/elections/newElection/NewElectionForm";
+import NewElectionForm from "./components/elections/NewElectionForm";
 import Home from "./components/Home";
 import { useHistory } from "react-router-dom";
-
-function getCreateDate() {
-  return new Date()
-    .toLocaleString()
-    .split(/\D/)
-    .slice(0, 3)
-    .map((num) => num.padStart(2, "0"))
-    .join("/");
-}
+import { useDispatch, useSelector } from "react-redux";
+import { createAddNewElection } from "./actions.js";
+import Election from "./components/elections/Election";
 
 function App() {
   const history = useHistory();
-  const [elections, setElections] = useState([]);
+  const elections = useSelector((state) => state.elections);
+  const dispatcher = useDispatch();
 
   function addNewElection(title, questions) {
-    let question_list = questions.map((q, index) => ({
-      id: index + 1,
-      title: q,
-      yes: 0,
-      no: 0,
-    }));
-
-    let election = {
-      id:
-        elections.length === 0
-          ? 0
-          : Math.max(...elections.map((c) => c.id)) + 1,
-      createdAt: getCreateDate(),
-      title: title,
-      questions: question_list,
-    };
-    setElections([...elections, election]);
+    let addNewAction = createAddNewElection(title, questions);
+    dispatcher(addNewAction);
     history.push("/");
   }
   return (
@@ -78,8 +57,11 @@ function App() {
               <h2>Register to Vote</h2>
               <hr />
             </Route>
-            <Route>
+            <Route exact path="/create-election">
               <NewElectionForm addNewElection={addNewElection} />
+            </Route>
+            <Route exact path="/election/:electionId">
+              <Election />
             </Route>
           </Switch>
         </Row>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Table } from "react-bootstrap";
+import { Table, Alert } from "react-bootstrap";
 
 function NewElectionForm({ addNewElection }) {
   const [electionForm, setElectionForm] = useState({
@@ -9,6 +9,7 @@ function NewElectionForm({ addNewElection }) {
     questions: [],
   });
   const [electionQuestion, setElectionQuestion] = useState("");
+  const [err, setErr] = useState("");
 
   function handleFormChange(event) {
     setElectionForm({
@@ -22,11 +23,16 @@ function NewElectionForm({ addNewElection }) {
   }
 
   function addQuestion() {
-    setElectionForm({
-      ...electionForm,
-      questions: [...electionForm.questions, electionQuestion],
-    });
-    setElectionQuestion("");
+    if (electionForm.questions.indexOf(electionQuestion) > -1) {
+      setErr("Question already in the list.");
+    } else {
+      setElectionForm({
+        ...electionForm,
+        questions: [...electionForm.questions, electionQuestion],
+      });
+      setElectionQuestion("");
+      setErr("");
+    }
   }
 
   function deleteQuestion(question) {
@@ -66,6 +72,9 @@ function NewElectionForm({ addNewElection }) {
             Add Question to List
           </Button>
         ) : null}
+        <br />
+        <br />
+        {err && <Alert variant="danger">{err}</Alert>}
         <hr />
         <h3>Questions in the List</h3>
         <Table>
