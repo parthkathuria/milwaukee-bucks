@@ -6,19 +6,19 @@ import { useParams } from "react-router";
 const VoterForm = ({ editableVoterId }) => {
   let { id } = useParams();
 
-  let initVoter = id
-    ? data.voters[parseInt(id) - 1]
-    : {
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        birthDate: "",
-        email: "",
-        phone: "",
-      };
-
-  const [voter, setVoter] = useState(initVoter);
+  const [voter, setVoter] = useState(
+    id
+      ? data.voters[parseInt(id) - 1]
+      : {
+          firstName: "",
+          lastName: "",
+          address: "",
+          city: "",
+          birthDate: "",
+          email: "",
+          phone: "",
+        }
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -2,11 +2,9 @@ import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { useState, useMemo } from "react";
 import data from "../../db.json";
-import { LinkContainer } from "react-router-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const VoterList = () => {
-  const [location, setLocation] = useState(`/register/:id`);
   const [selectedRows, setSelectedRows] = useState([]);
   let history = useHistory();
 
@@ -17,6 +15,10 @@ const VoterList = () => {
 
   const deleteVoter = (id) => {
     return "delete ID";
+  };
+
+  const deleteSelected = () => {
+    console.log("delete these", selectedRows);
   };
 
   const editPerson = (id) => {
@@ -100,6 +102,8 @@ const VoterList = () => {
           onSelectedRowsChange={handleSelectedRows}
           Clicked
         />
+        <br />
+        <Button onClick={deleteSelected()}> Delete selected</Button>
       </>
     </div>
   );
