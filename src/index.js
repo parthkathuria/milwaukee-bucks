@@ -8,7 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import thunk from "redux-thunk";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
-import { compose } from "redux";
+import { compose, createStore, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
 
 const middleware = [thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
