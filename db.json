@@ -12,8 +12,8 @@
     },
     {
       "id": 2,
-      "firstName": "RJssdsfsdfds",
-      "lastName": "Varonadsfsdfsdf",
+      "firstName": "rj",
+      "lastName": "var",
       "address": "123 Temp st.",
       "city": "Los Angeles",
       "birthDate": "12/13/4134",
@@ -21,34 +21,14 @@
       "phone": "1234567889"
     },
     {
-      "firstName": "d",
-      "lastName": "abcd",
-      "address": "2600 Casey Ave",
-      "city": "Mountain View",
-      "birthDate": "2021-07-14",
-      "email": "sdfds",
+      "firstName": "dsafdsaf",
+      "lastName": "sdafsda",
+      "address": "1223dsff dsda ",
+      "city": "dsaf",
+      "birthDate": "2021-07-15",
+      "email": "varorudson@gmail.com",
       "phone": "1234567889",
       "id": 3
-    },
-    {
-      "firstName": "dsafdsaf",
-      "lastName": "Varona",
-      "address": "adsfdsaf",
-      "city": "townsville",
-      "birthDate": "",
-      "email": "dasf",
-      "phone": "1234567889",
-      "id": 4
-    },
-    {
-      "firstName": "a",
-      "lastName": "dsfadfsadsafdsafa",
-      "address": "sdafdsaf",
-      "city": "adsfdsaf",
-      "birthDate": "2021-07-03",
-      "email": "sdf",
-      "phone": "1234567889",
-      "id": 5
     }
   ],
   "elections": [

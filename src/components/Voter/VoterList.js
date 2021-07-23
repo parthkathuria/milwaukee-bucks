@@ -3,10 +3,17 @@ import DataTable from "react-data-table-component";
 import { useState, useMemo } from "react";
 import data from "../../db.json";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteVoter, getVoters } from "../../services/FetchService";
+import { setDeleteVoter } from "../../actions.js/index";
+
+import { push } from "connected-react-router";
 
 const VoterList = ({ voters }) => {
-  const [selectedRows, setSelectedRows] = useState([]);
+  let dispatch = useDispatch();
+  const deletingVoter = useSelector((state) => state.appState.deletingVoter);
 
+  const [selectedRows, setSelectedRows] = useState([]);
   const [tableData, setTableData] = useState(voters);
 
   let history = useHistory();
@@ -16,8 +23,13 @@ const VoterList = ({ voters }) => {
     console.log("selectedRows", selectedRows);
   };
 
-  const deleteVoter = (id) => {
-    return "delete ID";
+  let removeVoter = (id) => (dispatch, getState) => {
+    dispatch(setDeleteVoter(true));
+    deleteVoter(id)
+      .then(() => dispatch(setDeleteVoter(false)))
+      .then(() => dispatch(getVoters()))
+      .then(() => dispatch(push("/")))
+      .then(window.location.reload(true));
   };
 
   const deleteSelected = () => {
@@ -44,7 +56,10 @@ const VoterList = ({ voters }) => {
     {
       cell: (row) => (
         <>
-          <Button variant="success" onClick={() => deleteVoter(row.id)}>
+          <Button
+            variant="success"
+            onClick={() => dispatch(removeVoter(row.id))}
+          >
             delete
           </Button>
         </>

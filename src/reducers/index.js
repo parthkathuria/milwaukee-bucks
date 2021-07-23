@@ -5,6 +5,7 @@ import {
   RECEIVE_VOTERS,
   IS_FETCHING_VOTERS,
   ADD_VOTER,
+  DELETE_VOTER,
 } from "../actions.js";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
@@ -15,6 +16,7 @@ let intialState = {
   isFetchingElection: false,
   addingNewElection: false,
   addingNewVoter: false,
+  deletingVoter: false,
 };
 
 const appState = (state = intialState, action) => {
@@ -23,6 +25,11 @@ const appState = (state = intialState, action) => {
       return {
         ...state,
         addingNewVoter: action.status,
+      };
+    case DELETE_VOTER:
+      return {
+        ...state,
+        deleteVoter: action.status,
       };
     case RECEIVE_VOTERS:
       return {
