@@ -34,9 +34,9 @@ useEffect(refreshElections, []);
         </tr>
       </thead>
       <tbody>
-              {election.questions.map((question) => {
+              {election.questions.map((question, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>{question.title}</td>
                     <td>{question.yes}</td>
                     <td>{question.no}</td>

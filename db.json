@@ -31,13 +31,13 @@
         {
           "id": 1,
           "title": "What is the question?",
-          "yes": 4,
+          "yes": 6,
           "no": 1
         },
         {
           "id": 2,
           "title": "What is the next question?",
-          "yes": 0,
+          "yes": 2,
           "no": 5
         }
       ],

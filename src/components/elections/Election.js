@@ -32,7 +32,7 @@ export default function Election() {
       .then(response => {
         if(response.length === 1){
           setVoterState('valid');
-          setResult(Array(election.questions.length).fill(0))
+       
         } else {
           setVoterState('notExist');
         }
@@ -89,7 +89,10 @@ export default function Election() {
                   <tr>
                     <td>{question.title}</td>
                     <td>
-                    {voterState === 'valid' && <Form.Check aria-label="option 1" checked={result[index]} onChange={()=>{
+                    {voterState === 'valid' && <Form.Check key={index} aria-label="option 1" checked={result[index]?result[index]:0} onChange={()=>{
+                      if(!result[index]){
+                        result[index]=0;
+                      }
                       let newResult = [...result];
                       newResult[index] = 1 - result[index];
                       setResult(newResult)

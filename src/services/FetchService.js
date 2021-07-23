@@ -3,7 +3,7 @@ import {
   createRecieveElections,
 } from "../actions.js";
 
-const enpointURL = "http://127.0.0.1:3000";
+const enpointURL = "http://localhost:3001";
 function checkHttpStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response);
