@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const REQUEST_VOTERS = "REQUEST_VOTERS";
 export const ADD_NEW_ELECTION = "ADD_NEW_ELECTION";
-<<<<<<< HEAD
 export const RECIEVE_ELECTIONS = "RECIEVE_ELECTIONS";
 export const IS_FETCHING_ELECTION = "IS_FETCHING_ELECTION";
-=======
 export const ADD_VOTER = "ADD_VOTER";
 
 const dispatch = useDispatch;
->>>>>>> origin/rj-branch
 
 export const requestVoters = (voters) => {
   return {

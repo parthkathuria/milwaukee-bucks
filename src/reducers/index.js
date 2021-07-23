@@ -1,23 +1,12 @@
-<<<<<<< HEAD
 import {
   ADD_NEW_ELECTION,
   IS_FETCHING_ELECTION,
   RECIEVE_ELECTIONS,
+  ADD_VOTER, 
+  REQUEST_VOTERS 
 } from "../actions.js";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
-=======
-import { ADD_NEW_ELECTION, ADD_VOTER, REQUEST_VOTERS } from "../actions.js";
-
-function getCreateDate() {
-  return new Date()
-    .toLocaleString()
-    .split(/\D/)
-    .slice(0, 3)
-    .map((num) => num.padStart(2, "0"))
-    .join("/");
-}
->>>>>>> origin/rj-branch
 
 let intialState = {
   voters: [],
