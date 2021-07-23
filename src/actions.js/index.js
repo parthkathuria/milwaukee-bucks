@@ -9,11 +9,10 @@ export const requestVoters = () => {
   };
 };
 
-export const createAddNewElection = (title, questions) => {
+export const createAddNewElection = (status) => {
   return {
     type: ADD_NEW_ELECTION,
-    title,
-    questions,
+    status,
   };
 };
 

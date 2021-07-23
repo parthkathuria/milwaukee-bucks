@@ -4,9 +4,11 @@ import { Button } from "react-bootstrap";
 import ElectionList from "./elections/ElectionList";
 import { useSelector } from "react-redux";
 
-function Home({ elections }) {
+function Home({ elections, refreshElections }) {
   const [showVoters, setShowVoters] = useState(false);
-  const isFetchingElections = useSelector((state) => state.isFetchingElections);
+  const isFetchingElection = useSelector(
+    (state) => state.appState.isFetchingElection
+  );
   return (
     <>
       <h2>Registered Voters</h2>
@@ -21,14 +23,15 @@ function Home({ elections }) {
       {showVoters && <VoterList />}
       <hr />
       <h2>Elections</h2>
-      {elections.length ? (
-        <ElectionList elections={elections} />
-      ) : (
-        <p>
-          No Elections created yet. Click <b>Create Elections</b> link to create
-          one.
-        </p>
-      )}
+      <Button
+        variant="success"
+        disabled={isFetchingElection}
+        onClick={isFetchingElection || refreshElections}
+        size="sm"
+      >
+        {isFetchingElection ? "Refreshing..." : "Refresh"}
+      </Button>
+      {elections.length ? <ElectionList elections={elections} /> : null}
     </>
   );
 }

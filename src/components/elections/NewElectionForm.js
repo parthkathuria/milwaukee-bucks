@@ -2,8 +2,18 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Table, Alert } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { createElections, getElections } from "../../services/FetchService";
+import { useDispatch, useSelector } from "react-redux";
+import { createAddNewElection } from "../../actions.js";
+import { push } from "connected-react-router";
 
-function NewElectionForm({ addNewElection }) {
+function NewElectionForm() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const addingNewElection = useSelector(
+    (state) => state.appState.addingNewElection
+  );
   const [electionForm, setElectionForm] = useState({
     title: "",
     questions: [],
@@ -43,6 +53,14 @@ function NewElectionForm({ addNewElection }) {
       questions: [...electionForm.questions],
     });
   }
+
+  let addNewElection = (title, questions) => (dispatch, getState) => {
+    dispatch(createAddNewElection(true));
+    createElections(title, questions)
+      .then(() => dispatch(createAddNewElection(false)))
+      .then(() => dispatch(getElections()))
+      .then(() => dispatch(push("/")));
+  };
 
   return (
     <>
@@ -102,11 +120,20 @@ function NewElectionForm({ addNewElection }) {
           <div className="d-grid gap-2">
             <Button
               variant="success"
-              onClick={() =>
-                addNewElection(electionForm.title, electionForm.questions)
+              onClick={
+                !addingNewElection
+                  ? () =>
+                      dispatch(
+                        addNewElection(
+                          electionForm.title,
+                          electionForm.questions
+                        )
+                      )
+                  : null
               }
+              disabled={addingNewElection}
             >
-              Save
+              {addingNewElection ? "Saving..." : "Save"}
             </Button>
           </div>
         ) : null}

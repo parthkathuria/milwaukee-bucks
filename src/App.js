@@ -7,16 +7,13 @@ import { Route, Switch } from "react-router-dom";
 import NewElectionForm from "./components/elections/NewElectionForm";
 import Home from "./components/Home";
 import VoterForm from "./components/Voter/VoterForm";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createAddNewElection } from "./actions.js";
 import Election from "./components/elections/Election";
 import { useEffect } from "react";
 import { getElections } from "./services/FetchService";
 
 function App() {
-  const history = useHistory();
-  const elections = useSelector((state) => state.elections);
+  const elections = useSelector((state) => state.appState.elections);
   const dispatch = useDispatch();
 
   function refreshElections() {
@@ -24,11 +21,6 @@ function App() {
   }
   useEffect(refreshElections, []);
 
-  function addNewElection(title, questions) {
-    let addNewAction = createAddNewElection(title, questions);
-    dispatch(addNewAction);
-    history.push("/");
-  }
   return (
     <div>
       <Navbar bg="success" variant="light">
@@ -65,7 +57,7 @@ function App() {
               <VoterForm />
             </Route>
             <Route exact path="/create-election">
-              <NewElectionForm addNewElection={addNewElection} />
+              <NewElectionForm />
             </Route>
             <Route exact path="/election/:electionId">
               <Election />

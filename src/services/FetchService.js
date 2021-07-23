@@ -35,13 +35,15 @@ let getVotersByEmail = function (email) {
     .then((res) => res.json());
 };
 
-let getElections = () => (dispatch) => {
-  dispatch(createIsFetichingElection(true));
-  return fetch(enpointURL + "/elections")
-    .then(checkHttpStatus)
-    .then((res) => res.json())
-    .then((data) => dispatch(createRecieveElections(data)))
-    .then(() => dispatch(createIsFetichingElection(false)));
+let getElections = () => (dispatch, getState) => {
+  if (!getState().appState.isFetchingElection) {
+    dispatch(createIsFetichingElection(true));
+    return fetch(enpointURL + "/elections")
+      .then(checkHttpStatus)
+      .then((res) => res.json())
+      .then((data) => dispatch(createRecieveElections(data)))
+      .then(() => dispatch(createIsFetichingElection(false)));
+  }
 };
 
 let getElectionById = function (id) {
@@ -109,7 +111,7 @@ let editVoter = function (
     .then((res) => res.json());
 };
 
-let createElections = function (title, questions) {
+let createElections = (title, questions) => {
   let question_list = questions.map((q, index) => ({
     id: index + 1,
     title: q,
