@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import NewElectionForm from "./components/elections/NewElectionForm";
 import Home from "./components/Home";
+import VoterForm from "./components/Voter/VoterForm";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createAddNewElection } from "./actions.js";
@@ -45,7 +46,7 @@ function App() {
             </Navbar.Brand>
           </LinkContainer>
           <Nav className="me-auto">
-            <LinkContainer to="/register">
+            <LinkContainer to="/register/:id">
               <Nav.Link>Register</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/create-election">
@@ -60,9 +61,8 @@ function App() {
             <Route exact path="/">
               <Home elections={elections} refreshElections={refreshElections} />
             </Route>
-            <Route exact path="/register">
-              <h2>Register to Vote</h2>
-              <hr />
+            <Route exact path="/register/:id">
+              <VoterForm />
             </Route>
             <Route exact path="/create-election">
               <NewElectionForm addNewElection={addNewElection} />
