@@ -12,16 +12,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Election from "./components/elections/Election";
 import ElectionResult from "./components/elections/ElectionResult";
 import { useEffect } from "react";
-import { getElections } from "./services/FetchService";
+import { getElections, getVoters } from "./services/FetchService";
 
 function App() {
   const elections = useSelector((state) => state.appState.elections);
+  const voters = useSelector((state) => state.appState.voters);
+
   const dispatch = useDispatch();
 
   function refreshElections() {
     dispatch(getElections());
   }
+
+  function refreshVoters() {
+    dispatch(getVoters());
+  }
+
   useEffect(refreshElections, []);
+  useEffect(refreshVoters, []);
 
   return (
     <div>
@@ -53,10 +61,15 @@ function App() {
         <Row>
           <Switch>
             <Route exact path="/">
-              <Home elections={elections} refreshElections={refreshElections} />
+              <Home
+                elections={elections}
+                voters={voters}
+                refreshElections={refreshElections}
+                refreshVoters={refreshVoters}
+              />
             </Route>
             <Route exact path="/register/:id">
-              <VoterForm />
+              <VoterForm voters={voters} />
             </Route>
             <Route exact path="/create-election">
               <NewElectionForm />

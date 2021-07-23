@@ -1,6 +1,8 @@
 import {
   createIsFetichingElection,
   createRecieveElections,
+  createIsFetichingVoters,
+  createReceiveVoters,
 } from "../actions.js";
 
 const enpointURL = "http://localhost:3001";
@@ -23,12 +25,6 @@ function getCreateDate() {
     .join("/");
 }
 
-let getVoters = function () {
-  return fetch(enpointURL + "/voters")
-    .then(checkHttpStatus)
-    .then((res) => res.json());
-};
-
 let getVotersByEmail = function (email) {
   return fetch(enpointURL + "/voters?email=" + email)
     .then(checkHttpStatus)
@@ -46,30 +42,24 @@ let getElections = () => (dispatch, getState) => {
   }
 };
 
+let getVoters = () => (dispatch, getState) => {
+  if (!getState().appState.isFetchingElection) {
+    dispatch(createIsFetichingVoters(true));
+    return fetch(enpointURL + "/voters")
+      .then(checkHttpStatus)
+      .then((res) => res.json())
+      .then((data) => dispatch(createReceiveVoters(data)))
+      .then(() => dispatch(createIsFetichingVoters(false)));
+  }
+};
+
 let getElectionById = function (id) {
   return fetch(enpointURL + "/elections/" + id)
     .then(checkHttpStatus)
     .then((res) => res.json());
 };
 
-let createVoter = function (
-  firstName,
-  lastName,
-  address,
-  city,
-  birthDate,
-  email,
-  phone
-) {
-  let voter = {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    birthDate: birthDate,
-    email: email,
-    phone: phone,
-  };
+let createVoter = function (voter) {
   return fetch(enpointURL + "/voters", {
     method: "POST",
     headers: {
@@ -81,26 +71,8 @@ let createVoter = function (
     .then((res) => res.json());
 };
 
-let editVoter = function (
-  id,
-  firstName,
-  lastName,
-  address,
-  city,
-  birthDate,
-  email,
-  phone
-) {
-  let voter = {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    birthDate: birthDate,
-    email: email,
-    phone: phone,
-  };
-  return fetch(enpointURL + "/voters/" + id, {
+let editVoter = function (voter) {
+  return fetch(enpointURL + "/voters/" + voter.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

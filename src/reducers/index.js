@@ -2,8 +2,11 @@ import {
   ADD_NEW_ELECTION,
   IS_FETCHING_ELECTION,
   RECIEVE_ELECTIONS,
-  ADD_VOTER, 
-  REQUEST_VOTERS 
+  RECEIVE_VOTERS,
+  IS_FETCHING_VOTERS,
+  ADD_VOTER,
+  DELETE_VOTER,
+  DELETE_VOTERS,
 } from "../actions.js";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
@@ -13,6 +16,9 @@ let intialState = {
   elections: [],
   isFetchingElection: false,
   addingNewElection: false,
+  addingNewVoter: false,
+  deletingVoter: false,
+  deletingVoters: false,
 };
 
 const appState = (state = intialState, action) => {
@@ -20,10 +26,27 @@ const appState = (state = intialState, action) => {
     case ADD_VOTER:
       return {
         ...state,
+        addingNewVoter: action.status,
       };
-    case REQUEST_VOTERS:
+    case DELETE_VOTERS:
       return {
         ...state,
+        deletingVoters: action.status,
+      };
+    case DELETE_VOTER:
+      return {
+        ...state,
+        deletingVoter: action.status,
+      };
+    case RECEIVE_VOTERS:
+      return {
+        ...state,
+        voters: [...action.voters],
+      };
+    case IS_FETCHING_VOTERS:
+      return {
+        ...state,
+        isFetchingElection: action.status,
       };
     case ADD_NEW_ELECTION:
       return {
