@@ -4,14 +4,17 @@ import { useState, useMemo } from "react";
 import data from "../../db.json";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteVoter, getVoters } from "../../services/FetchService";
-import { setDeleteVoter } from "../../actions.js/index";
+import {
+  deleteVoter,
+  getVoters,
+  deleteMultipleVoters,
+} from "../../services/FetchService";
+import { setDeleteVoter, setDeleteVoters } from "../../actions.js/index";
 
 import { push } from "connected-react-router";
 
 const VoterList = ({ voters }) => {
   let dispatch = useDispatch();
-  const deletingVoter = useSelector((state) => state.appState.deletingVoter);
 
   const [selectedRows, setSelectedRows] = useState([]);
   const [tableData, setTableData] = useState(voters);
@@ -27,6 +30,17 @@ const VoterList = ({ voters }) => {
     dispatch(setDeleteVoter(true));
     deleteVoter(id)
       .then(() => dispatch(setDeleteVoter(false)))
+      .then(() => dispatch(getVoters()))
+      .then(() => dispatch(push("/")))
+      .then(window.location.reload(true));
+  };
+
+  let removeVoters = () => (dispatch, getState) => {
+    if (selectedRows.length === 0) return;
+    let ids = selectedRows.map((a) => a.id);
+    dispatch(setDeleteVoters(true));
+    deleteMultipleVoters(ids)
+      .then(() => dispatch(deleteMultipleVoters(false)))
       .then(() => dispatch(getVoters()))
       .then(() => dispatch(push("/")))
       .then(window.location.reload(true));
@@ -121,7 +135,10 @@ const VoterList = ({ voters }) => {
           Clicked
         />
         <br />
-        <Button onClick={deleteSelected()}> Delete selected</Button>
+        <Button onClick={() => dispatch(removeVoters())}>
+          {" "}
+          Delete selected
+        </Button>
       </>
     </div>
   );

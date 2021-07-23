@@ -6,6 +6,7 @@ export const ADD_NEW_ELECTION = "ADD_NEW_ELECTION";
 export const ADD_VOTER = "ADD_VOTER";
 export const IS_FETCHING_VOTERS = "IS_FETCHING_VOTERS";
 export const DELETE_VOTER = "DELETE_VOTER";
+export const DELETE_VOTERS = "DELETE_VOTERS";
 
 const dispatch = useDispatch;
 export const RECIEVE_ELECTIONS = "RECIEVE_ELECTIONS";
@@ -14,6 +15,13 @@ export const IS_FETCHING_ELECTION = "IS_FETCHING_ELECTION";
 export const createAddNewVoter = (status) => {
   return {
     type: ADD_VOTER,
+    status,
+  };
+};
+
+export const setDeleteVoters = (status) => {
+  return {
+    type: DELETE_VOTERS,
     status,
   };
 };

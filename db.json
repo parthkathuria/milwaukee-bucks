@@ -1,36 +1,5 @@
 {
-  "voters": [
-    {
-      "id": 1,
-      "firstName": "Parthdsadsa",
-      "lastName": "Kathuriafgfdgdfgdf",
-      "address": "123 Temp st.",
-      "city": "Mountain View",
-      "birthDate": "12/13/4134",
-      "email": "parth_kathuria@intuit.com",
-      "phone": "123445566"
-    },
-    {
-      "id": 2,
-      "firstName": "rj",
-      "lastName": "var",
-      "address": "123 Temp st.",
-      "city": "Los Angeles",
-      "birthDate": "12/13/4134",
-      "email": "rjv@intuit.com",
-      "phone": "1234567889"
-    },
-    {
-      "firstName": "dsafdsaf",
-      "lastName": "sdafsda",
-      "address": "1223dsff dsda ",
-      "city": "dsaf",
-      "birthDate": "2021-07-15",
-      "email": "varorudson@gmail.com",
-      "phone": "1234567889",
-      "id": 3
-    }
-  ],
+  "voters": [],
   "elections": [
     {
       "id": 1,
