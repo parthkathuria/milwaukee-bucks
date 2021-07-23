@@ -1,10 +1,10 @@
+import { useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import { useState, useMemo } from "react";
-import data from "../../db.json";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchVoters } from "../../actions.js/index";
-import { useDispatch, useSelector } from "react-redux";
+import data from "../../db.json";
 
 const VoterList = () => {
   const [selectedRows, setSelectedRows] = useState([]);

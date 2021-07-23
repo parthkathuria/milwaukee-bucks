@@ -1,17 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import thunk from "redux-thunk";
-import { Provider } from "react-redux";
-import { compose, createStore, applyMiddleware } from "redux";
-import { createLogger } from "redux-logger";
-import createRootReducer from "./reducers";
 import { ConnectedRouter, routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { applyMiddleware, compose, createStore } from "redux";
+import { createLogger } from "redux-logger";
+import thunk from "redux-thunk";
+import App from "./App";
+import "./index.css";
+import createRootReducer from "./reducers";
+import reportWebVitals from "./reportWebVitals";
 
 export const history = createBrowserHistory();
 

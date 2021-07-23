@@ -26,7 +26,7 @@ function Home({ elections, refreshElections }) {
       <Button
         variant="success"
         disabled={isFetchingElection}
-        onClick={isFetchingElection || refreshElections}
+        onClick={!isFetchingElection ? refreshElections : null}
         size="sm"
       >
         {isFetchingElection ? "Refreshing..." : "Refresh"}

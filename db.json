@@ -53,14 +53,35 @@
         {
           "id": 1,
           "title": "d",
-          "yes": 1,
+          "yes": 2,
           "no": 0
         }
       ],
       "voterList": [
-        "abigail_zhang@intuit.com"
+        "abigail_zhang@intuit.com",
+        "parth_kathuria@intuit.com"
       ],
       "id": 2
+    },
+    {
+      "createdAt": "07/23/2021",
+      "title": "Election 1",
+      "questions": [
+        {
+          "id": 1,
+          "title": "A1",
+          "yes": 0,
+          "no": 0
+        },
+        {
+          "id": 2,
+          "title": "A2",
+          "yes": 0,
+          "no": 0
+        }
+      ],
+      "voterList": [],
+      "id": 3
     }
   ]
 }
