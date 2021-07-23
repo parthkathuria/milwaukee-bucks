@@ -7,8 +7,10 @@ import { Route, Switch } from "react-router-dom";
 import NewElectionForm from "./components/elections/NewElectionForm";
 import Home from "./components/Home";
 import VoterForm from "./components/Voter/VoterForm";
+import VoteSuccess from "./components/elections/VoteSuccess";
 import { useDispatch, useSelector } from "react-redux";
 import Election from "./components/elections/Election";
+import ElectionResult from "./components/elections/ElectionResult";
 import { useEffect } from "react";
 import { getElections } from "./services/FetchService";
 
@@ -61,6 +63,12 @@ function App() {
             </Route>
             <Route exact path="/election/:electionId">
               <Election />
+            </Route>
+            <Route exact path="/election-result/:electionId">
+              <ElectionResult />
+            </Route>
+            <Route exact path="/success">
+              <VoteSuccess />
             </Route>
           </Switch>
         </Row>
