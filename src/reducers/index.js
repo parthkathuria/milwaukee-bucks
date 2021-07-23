@@ -1,4 +1,4 @@
-import { ADD_NEW_ELECTION } from "../actions.js";
+import { ADD_NEW_ELECTION, ADD_VOTER, REQUEST_VOTERS } from "../actions.js";
 
 function getCreateDate() {
   return new Date()
@@ -10,11 +10,20 @@ function getCreateDate() {
 }
 
 let intialState = {
+  voters: [],
   elections: [],
 };
 
 const reducer = (state = intialState, action) => {
   switch (action.type) {
+    case ADD_VOTER:
+      return {
+        ...state,
+      };
+    case REQUEST_VOTERS:
+      return {
+        ...state,
+      };
     case ADD_NEW_ELECTION:
       let question_list = action.questions.map((q, index) => ({
         id: index + 1,

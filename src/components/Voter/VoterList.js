@@ -3,9 +3,15 @@ import DataTable from "react-data-table-component";
 import { useState, useMemo } from "react";
 import data from "../../db.json";
 import { useHistory } from "react-router-dom";
+import { fetchVoters } from "../../actions.js/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const VoterList = () => {
   const [selectedRows, setSelectedRows] = useState([]);
+  const dispatch = useDispatch();
+
+  const [tableData, setTableData] = useState(dispatch(fetchVoters));
+
   let history = useHistory();
 
   const handleSelectedRows = (e) => {
