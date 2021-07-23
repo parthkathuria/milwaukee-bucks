@@ -1,4 +1,10 @@
-import { ADD_NEW_ELECTION, ADD_VOTER, REQUEST_VOTERS } from "../actions.js";
+import {
+  ADD_NEW_ELECTION,
+  IS_FETCHING_ELECTION,
+  RECIEVE_ELECTIONS,
+  ADD_VOTER,
+  REQUEST_VOTERS,
+} from "../actions.js";
 
 function getCreateDate() {
   return new Date()
@@ -12,6 +18,7 @@ function getCreateDate() {
 let intialState = {
   voters: [],
   elections: [],
+  isFetchingElection: false,
 };
 
 const reducer = (state = intialState, action) => {
@@ -23,6 +30,16 @@ const reducer = (state = intialState, action) => {
     case REQUEST_VOTERS:
       return {
         ...state,
+      };
+    case IS_FETCHING_ELECTION:
+      return {
+        ...state,
+        isFetchingElection: action.status,
+      };
+    case RECIEVE_ELECTIONS:
+      return {
+        ...state,
+        elections: [...action.elections],
       };
     case ADD_NEW_ELECTION:
       let question_list = action.questions.map((q, index) => ({

@@ -2,9 +2,11 @@ import VoterList from "./Voter/VoterList";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import ElectionList from "./elections/ElectionList";
+import { useSelector } from "react-redux";
 
 function Home({ elections }) {
   const [showVoters, setShowVoters] = useState(false);
+  const isFetchingElections = useSelector((state) => state.isFetchingElections);
   return (
     <>
       <h2>Registered Voters</h2>

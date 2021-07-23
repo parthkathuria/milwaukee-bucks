@@ -8,8 +8,7 @@
       "city": "Mountain View",
       "birthDate": "12/13/4134",
       "email": "parth_kathuria@intuit.com",
-      "phone": "123445566",
-      "electionsCompleted": []
+      "phone": "123445566"
     }
   ],
   "elections": [
@@ -17,6 +16,7 @@
       "id": 1,
       "createdAt": "07/22/2021",
       "title": "Election 1",
+      "voterList": [],
       "questions": [
         {
           "id": 1,
