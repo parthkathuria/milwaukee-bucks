@@ -43,7 +43,7 @@ let getElections = () => (dispatch, getState) => {
 };
 
 let getVoters = () => (dispatch, getState) => {
-  if (!getState().appState.isFetchingElection) {
+  if (!getState().appState.isFetchingVoter) {
     dispatch(createIsFetichingVoters(true));
     return fetch(enpointURL + "/voters")
       .then(checkHttpStatus)

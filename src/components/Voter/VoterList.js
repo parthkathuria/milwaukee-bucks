@@ -1,17 +1,15 @@
+import { push } from "connected-react-router";
 import { useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import { setDeleteVoter, setDeleteVoters } from "../../actions.js/index";
 import {
+  deleteMultipleVoters,
   deleteVoter,
   getVoters,
-  deleteMultipleVoters,
 } from "../../services/FetchService";
-import { setDeleteVoter, setDeleteVoters } from "../../actions.js/index";
-
-import { push } from "connected-react-router";
 
 const VoterList = ({ voters }) => {
   let dispatch = useDispatch();
@@ -136,7 +134,7 @@ const VoterList = ({ voters }) => {
           Clicked
         />
         <br />
-        <Button onClick={() => dispatch(removeVoters())}>
+        <Button onClick={() => dispatch(removeVoters())} variant="danger">
           {" "}
           Delete selected
         </Button>

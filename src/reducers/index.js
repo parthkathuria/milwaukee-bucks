@@ -15,6 +15,7 @@ let intialState = {
   voters: [],
   elections: [],
   isFetchingElection: false,
+  isFetchingVoter: false,
   addingNewElection: false,
   addingNewVoter: false,
   deletingVoter: false,
@@ -46,7 +47,7 @@ const appState = (state = intialState, action) => {
     case IS_FETCHING_VOTERS:
       return {
         ...state,
-        isFetchingElection: action.status,
+        isFetchingVoter: action.status,
       };
     case ADD_NEW_ELECTION:
       return {

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import ElectionList from "./elections/ElectionList";
 import { useSelector } from "react-redux";
-import { IS_FETCHING_VOTERS } from "../actions.js";
 
 function Home({ elections, voters, refreshElections, refreshVoters }) {
   const [showVoters, setShowVoters] = useState(false);
@@ -12,7 +11,7 @@ function Home({ elections, voters, refreshElections, refreshVoters }) {
   );
 
   const isFetchingVoters = useSelector(
-    (state) => state.appState.isFetchingVoters
+    (state) => state.appState.isFetchingVoter
   );
 
   return (
