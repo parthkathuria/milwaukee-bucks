@@ -10,15 +10,22 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createAddNewElection } from "./actions.js";
 import Election from "./components/elections/Election";
+import { useEffect } from "react";
+import { getElections } from "./services/FetchService";
 
 function App() {
   const history = useHistory();
   const elections = useSelector((state) => state.elections);
-  const dispatcher = useDispatch();
+  const dispatch = useDispatch();
+
+  function refreshElections() {
+    dispatch(getElections());
+  }
+  useEffect(refreshElections, []);
 
   function addNewElection(title, questions) {
     let addNewAction = createAddNewElection(title, questions);
-    dispatcher(addNewAction);
+    dispatch(addNewAction);
     history.push("/");
   }
   return (
@@ -51,7 +58,7 @@ function App() {
         <Row>
           <Switch>
             <Route exact path="/">
-              <Home elections={elections} />
+              <Home elections={elections} refreshElections={refreshElections} />
             </Route>
             <Route exact path="/register">
               <h2>Register to Vote</h2>

@@ -1,11 +1,22 @@
+import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import ElectionList from "./elections/ElectionList";
 
-function Home({ elections }) {
+function Home({ elections, refreshElections }) {
+  const isFetchingElection = useSelector((state) => state.isFetchingElection);
   return (
     <>
-      <h2>Registered Voters</h2>
+      <h3>Registered Voters</h3>
       <hr />
-      <h2>Elections</h2>
+      <h3>Elections</h3>
+      <Button
+        variant="outline-success"
+        size="sm"
+        disabled={isFetchingElection}
+        onClick={!isFetchingElection ? refreshElections : null}
+      >
+        {isFetchingElection ? "Refreshing..." : "Refresh"}
+      </Button>
       {elections.length ? (
         <ElectionList elections={elections} />
       ) : (
