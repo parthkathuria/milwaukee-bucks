@@ -7,14 +7,15 @@ import { createVoter, getVoters, editVoter } from "../../services/FetchService";
 import { push } from "connected-react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-const VoterForm = ({ voters }) => {
+const VoterForm = () => {
   let dispatch = useDispatch();
   let { id } = useParams();
   const addingNewVoter = useSelector((state) => state.appState.addNewVoter);
+  const voters = useSelector((state) => state.appState.voters);
 
   const [voter, setVoter] = useState(
     id !== ":id"
-      ? voters[parseInt(id) - 1]
+      ? voters.find((voter) => voter.id === parseInt(id))
       : {
           firstName: "",
           lastName: "",
@@ -124,7 +125,6 @@ const VoterForm = ({ voters }) => {
 
         <Button
           variant="success"
-          type="submit"
           onClick={!addingNewVoter ? () => dispatch(addNewVoter(voter)) : null}
           disabled={addingNewVoter}
         >

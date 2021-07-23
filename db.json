@@ -1,5 +1,96 @@
 {
-  "voters": [],
+  "voters": [
+    {
+      "firstName": "dsafsdaf",
+      "lastName": "afdsafdsfs",
+      "address": "adsafdsaf",
+      "city": "sdaf",
+      "birthDate": "2021-07-01",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 2
+    },
+    {
+      "firstName": "Rudson",
+      "lastName": "Varona",
+      "address": "123213",
+      "city": "West adsffdasf",
+      "birthDate": "2021-07-02",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 3
+    },
+    {
+      "firstName": "Rudson",
+      "lastName": "Varona",
+      "address": "123",
+      "city": "adsfsd",
+      "birthDate": "2021-07-14",
+      "email": "varorudson@gmail.com",
+      "phone": "1234567889",
+      "id": 4
+    },
+    {
+      "firstName": "Rudson",
+      "lastName": "Varona",
+      "address": "7818 Cowper Ave321321",
+      "city": "adsfs",
+      "birthDate": "2021-07-01",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 5
+    },
+    {
+      "firstName": "Assured",
+      "lastName": "Inc",
+      "address": "adsffs",
+      "city": "dsafds",
+      "birthDate": "2021-07-14",
+      "email": "varorudson@gmail.com",
+      "phone": "1234567889",
+      "id": 6
+    },
+    {
+      "firstName": "sdafdsaf",
+      "lastName": "dsaf",
+      "address": "sdaf",
+      "city": "Stanford",
+      "birthDate": "2021-07-02",
+      "email": "dsaf",
+      "phone": "1234567889",
+      "id": 7
+    },
+    {
+      "firstName": "Rudson",
+      "lastName": "Varona",
+      "address": "7818 Cowper Ave",
+      "city": "West Hills",
+      "birthDate": "2021-07-08",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 8
+    },
+    {
+      "firstName": "Rudson",
+      "lastName": "Varona",
+      "address": "7818 Cowper Ave",
+      "city": "West Hills",
+      "birthDate": "2021-07-01",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 9
+    },
+    {
+      "firstName": "Rudsonsfsdafsdaf",
+      "lastName": "adsfdsafVaronasadfsadfsddsafsdaf",
+      "address": "7818 Cowper Ave",
+      "city": "West Hills",
+      "birthDate": "2021-07-01",
+      "email": "varorudson@gmail.com",
+      "phone": "4232276116",
+      "id": 10
+    }
+  ],
   "elections": [
     {
       "id": 1,
