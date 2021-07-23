@@ -3,14 +3,11 @@ import DataTable from "react-data-table-component";
 import { useState, useMemo } from "react";
 import data from "../../db.json";
 import { useHistory } from "react-router-dom";
-import { fetchVoters } from "../../actions.js/index";
-import { useDispatch, useSelector } from "react-redux";
 
-const VoterList = () => {
+const VoterList = ({ voters }) => {
   const [selectedRows, setSelectedRows] = useState([]);
-  const dispatch = useDispatch();
 
-  const [tableData, setTableData] = useState(dispatch(fetchVoters));
+  const [tableData, setTableData] = useState(voters);
 
   let history = useHistory();
 
@@ -103,7 +100,7 @@ const VoterList = () => {
       <>
         <DataTable
           columns={columns}
-          data={data.voters}
+          data={tableData}
           selectableRows // add for checkbox selection
           onSelectedRowsChange={handleSelectedRows}
           Clicked

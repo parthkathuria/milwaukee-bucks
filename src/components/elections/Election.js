@@ -4,7 +4,7 @@ import { store } from "../..";
 
 export default function Election() {
   let { electionId } = useParams();
-  const state = store.getState();
+  const state = store.getState().appState;
   let election;
   if (electionId) {
     election = state.elections.find((e) => e.id === parseInt(electionId));

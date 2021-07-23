@@ -1,39 +1,27 @@
 import * as service from "../services/FetchService.js";
 import { useDispatch, useSelector } from "react-redux";
 
-export const REQUEST_VOTERS = "REQUEST_VOTERS";
+export const RECEIVE_VOTERS = "RECEIVE_VOTERS";
 export const ADD_NEW_ELECTION = "ADD_NEW_ELECTION";
 export const ADD_VOTER = "ADD_VOTER";
+export const IS_FETCHING_VOTERS = "IS_FETCHING_VOTERS";
 
 const dispatch = useDispatch;
 export const RECIEVE_ELECTIONS = "RECIEVE_ELECTIONS";
 export const IS_FETCHING_ELECTION = "IS_FETCHING_ELECTION";
 
-export const requestVoters = (voters) => {
-  return {
-    type: REQUEST_VOTERS,
-    voters,
-  };
-};
-
-export const addVoter = () => {
+export const createAddNewVoter = (status) => {
   return {
     type: ADD_VOTER,
+    status,
   };
 };
 
-export const createAddNewElection = (title, questions) => {
+export const createAddNewElection = (status) => {
   return {
     type: ADD_NEW_ELECTION,
-    title,
-    questions,
+    status,
   };
-};
-
-export const fetchVoters = () => () => {
-  dispatch(requestVoters());
-  service.getVoters();
-  console.log("here");
 };
 
 export const createRecieveElections = (elections) => {
@@ -46,6 +34,20 @@ export const createRecieveElections = (elections) => {
 export const createIsFetichingElection = (status) => {
   return {
     type: IS_FETCHING_ELECTION,
+    status,
+  };
+};
+
+export const createReceiveVoters = (voters) => {
+  return {
+    type: RECEIVE_VOTERS,
+    voters,
+  };
+};
+
+export const createIsFetichingVoters = (status) => {
+  return {
+    type: IS_FETCHING_VOTERS,
     status,
   };
 };

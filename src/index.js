@@ -6,26 +6,30 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import thunk from "redux-thunk";
-import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
+import createRootReducer from "./reducers";
+import { ConnectedRouter, routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
 
-const middleware = [thunk];
+export const history = createBrowserHistory();
+
+const middleware = [routerMiddleware(history), thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger());
 }
 const enhancer = composeEnhancers(applyMiddleware(...middleware));
-export const store = createStore(reducer, enhancer);
+export const store = createStore(createRootReducer(history), enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

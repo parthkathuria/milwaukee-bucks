@@ -2,13 +2,19 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import data from "../../db.json";
 import { useParams } from "react-router";
+import { createAddNewVoter } from "../../actions.js/index";
+import { createVoter, getVoters, editVoter } from "../../services/FetchService";
+import { push } from "connected-react-router";
+import { useDispatch, useSelector } from "react-redux";
 
-const VoterForm = ({ editableVoterId }) => {
+const VoterForm = ({ voters }) => {
+  let dispatch = useDispatch();
   let { id } = useParams();
+  const addingNewVoter = useSelector((state) => state.appState.addNewVoter);
 
   const [voter, setVoter] = useState(
     id !== ":id"
-      ? data.voters[parseInt(id) - 1]
+      ? voters[parseInt(id) - 1]
       : {
           firstName: "",
           lastName: "",
@@ -19,6 +25,15 @@ const VoterForm = ({ editableVoterId }) => {
           phone: "",
         }
   );
+
+  let addNewVoter = (voter) => (dispatch, getState) => {
+    let voterAction = id !== ":id" ? editVoter : createVoter;
+    dispatch(createAddNewVoter(true));
+    voterAction(voter)
+      .then(() => dispatch(createAddNewVoter(false)))
+      .then(() => dispatch(getVoters()))
+      .then(() => dispatch(push("/")));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -107,8 +122,13 @@ const VoterForm = ({ editableVoterId }) => {
           {voter.phone}
         </Form.Group>
 
-        <Button variant="success" type="submit">
-          Submit
+        <Button
+          variant="success"
+          type="submit"
+          onClick={!addingNewVoter ? () => dispatch(addNewVoter(voter)) : null}
+          disabled={addingNewVoter}
+        >
+          {addingNewVoter ? "Saving..." : "Submit"}
         </Button>
       </Form>
     </div>

@@ -1,34 +1,43 @@
 import VoterList from "./Voter/VoterList";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, ButtonToolbar } from "react-bootstrap";
 import ElectionList from "./elections/ElectionList";
 import { useSelector } from "react-redux";
+import { IS_FETCHING_VOTERS } from "../actions.js";
 
-function Home({ elections }) {
+function Home({ elections, voters, refreshElections, refreshVoters }) {
   const [showVoters, setShowVoters] = useState(false);
-  const isFetchingElections = useSelector((state) => state.isFetchingElections);
+  const isFetchingElection = useSelector(
+    (state) => state.appState.isFetchingElection
+  );
+
+  const isFetchingVoters = useSelector(
+    (state) => state.appState.isFetchingVoters
+  );
+
   return (
     <>
       <h2>Registered Voters</h2>
       <Button
-        onClick={() => setShowVoters(!showVoters)}
         variant="success"
-        style={{ width: "20rem" }}
+        disabled={isFetchingVoters}
+        onClick={isFetchingVoters || refreshVoters}
+        size="sm"
       >
-        {" "}
-        Show Voters{" "}
+        {isFetchingVoters ? "Refreshing..." : "Refresh"}
       </Button>
-      {showVoters && <VoterList />}
+      {voters.length ? <VoterList voters={voters} /> : null}
       <hr />
       <h2>Elections</h2>
-      {elections.length ? (
-        <ElectionList elections={elections} />
-      ) : (
-        <p>
-          No Elections created yet. Click <b>Create Elections</b> link to create
-          one.
-        </p>
-      )}
+      <Button
+        variant="success"
+        disabled={isFetchingElection}
+        onClick={isFetchingElection || refreshElections}
+        size="sm"
+      >
+        {isFetchingElection ? "Refreshing..." : "Refresh"}
+      </Button>
+      {elections.length ? <ElectionList elections={elections} /> : null}
     </>
   );
 }

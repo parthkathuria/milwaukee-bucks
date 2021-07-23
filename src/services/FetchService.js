@@ -1,6 +1,8 @@
 import {
   createIsFetichingElection,
   createRecieveElections,
+  createIsFetichingVoters,
+  createReceiveVoters,
 } from "../actions.js";
 
 const enpointURL = "http://localhost:3001";
@@ -23,25 +25,32 @@ function getCreateDate() {
     .join("/");
 }
 
-let getVoters = function () {
-  return fetch(enpointURL + "/voters")
-    .then(checkHttpStatus)
-    .then((res) => res.json());
-};
-
 let getVotersByEmail = function (email) {
   return fetch(enpointURL + "/voters?email=" + email)
     .then(checkHttpStatus)
     .then((res) => res.json());
 };
 
-let getElections = () => (dispatch) => {
-  dispatch(createIsFetichingElection(true));
-  return fetch(enpointURL + "/elections")
-    .then(checkHttpStatus)
-    .then((res) => res.json())
-    .then((data) => dispatch(createRecieveElections(data)))
-    .then(() => dispatch(createIsFetichingElection(false)));
+let getElections = () => (dispatch, getState) => {
+  if (!getState().appState.isFetchingElection) {
+    dispatch(createIsFetichingElection(true));
+    return fetch(enpointURL + "/elections")
+      .then(checkHttpStatus)
+      .then((res) => res.json())
+      .then((data) => dispatch(createRecieveElections(data)))
+      .then(() => dispatch(createIsFetichingElection(false)));
+  }
+};
+
+let getVoters = () => (dispatch, getState) => {
+  if (!getState().appState.isFetchingElection) {
+    dispatch(createIsFetichingVoters(true));
+    return fetch(enpointURL + "/voters")
+      .then(checkHttpStatus)
+      .then((res) => res.json())
+      .then((data) => dispatch(createReceiveVoters(data)))
+      .then(() => dispatch(createIsFetichingVoters(false)));
+  }
 };
 
 let getElectionById = function (id) {
@@ -50,24 +59,7 @@ let getElectionById = function (id) {
     .then((res) => res.json());
 };
 
-let createVoter = function (
-  firstName,
-  lastName,
-  address,
-  city,
-  birthDate,
-  email,
-  phone
-) {
-  let voter = {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    birthDate: birthDate,
-    email: email,
-    phone: phone,
-  };
+let createVoter = function (voter) {
   return fetch(enpointURL + "/voters", {
     method: "POST",
     headers: {
@@ -79,26 +71,8 @@ let createVoter = function (
     .then((res) => res.json());
 };
 
-let editVoter = function (
-  id,
-  firstName,
-  lastName,
-  address,
-  city,
-  birthDate,
-  email,
-  phone
-) {
-  let voter = {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    birthDate: birthDate,
-    email: email,
-    phone: phone,
-  };
-  return fetch(enpointURL + "/voters/" + id, {
+let editVoter = function (voter) {
+  return fetch(enpointURL + "/voters/" + voter.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -109,7 +83,7 @@ let editVoter = function (
     .then((res) => res.json());
 };
 
-let createElections = function (title, questions) {
+let createElections = (title, questions) => {
   let question_list = questions.map((q, index) => ({
     id: index + 1,
     title: q,
