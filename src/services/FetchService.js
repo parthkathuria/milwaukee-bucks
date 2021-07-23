@@ -1,6 +1,4 @@
-//const enpointURL = "http://localhost:3001";
-const enpointURL =  "http://127.0.0.1:3000"
-
+const enpointURL = "http://localhost:3001";
 function checkHttpStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response);
@@ -35,6 +33,57 @@ let getElections = function () {
 
 let getElectionById = function (id) {
   return fetch(enpointURL + "/elections/" + id)
+  .then(checkHttpStatus)
+  .then((res) => res.json());
+};
+
+let createVoter = function (firstName, lastName, address, city, birthDate, email, phone) {
+  let voter = {
+    "firstName": firstName,
+    "lastName": lastName,
+    "address" : address,
+    "city" :  city,
+    "birthDate" : birthDate,
+    "email" : email,
+    "phone" :phone
+  }
+  return fetch(enpointURL + "/voters", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(voter)
+  })
+  .then(checkHttpStatus)
+  .then((res => res.json())
+  );
+};
+
+let editVoter = function (id, firstName, lastName, address, city, birthDate, email, phone) {
+  let voter = {
+    "firstName": firstName,
+    "lastName": lastName,
+    "address" : address,
+    "city" :  city,
+    "birthDate" : birthDate,
+    "email" : email,
+    "phone" :phone
+  }
+  return fetch(enpointURL + "/voters/" + id , {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    body: JSON.stringify(voter)
+  })
+  .then(checkHttpStatus)
+  .then((res => res.json())
+  );
+};
+
+
+let getElections = function () {
+  return fetch(enpointURL + "/elections")
   .then(checkHttpStatus)
   .then((res) => res.json());
 };
@@ -108,4 +157,4 @@ let deleteMultipleVoters = function(ids) {
   )))
 }
 
-export { getVoters, getElections, createElections, getElectionById, deleteMultipleVoters, getVotersByEmail, deleteVoter, updateElections};
+export { getVoters, getElections, createElections, createVoter, editVoter, getElectionById, deleteMultipleVoters, getVotersByEmail, deleteVoter, updateElections} ;
