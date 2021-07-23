@@ -34,9 +34,11 @@
   "elections": [
     {
       "id": 1,
-      "voterId": 1,
       "createdAt": "07/22/2021",
       "title": "Election 1",
+      "voterList": [
+        "parth_kathuria@intuit.com"
+      ],
       "questions": [
         {
           "id": 1,
@@ -51,6 +53,20 @@
           "no": 0
         }
       ]
+    },
+    {
+      "createdAt": "07/22/2021",
+      "title": "c",
+      "questions": [
+        {
+          "id": 1,
+          "title": "d",
+          "yes": 0,
+          "no": 0
+        }
+      ],
+      "voterList": [],
+      "id": 2
     }
   ]
 }

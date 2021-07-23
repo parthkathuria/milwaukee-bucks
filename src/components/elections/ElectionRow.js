@@ -2,7 +2,8 @@ import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 function ElectionRow({ election }) {
-  let url = `/election/${election.id}`;
+  let urlVote = `/election/${election.id}`;
+  let urlResult = `/election-result/${election.id}`;
 
   return (
     <tr>
@@ -10,9 +11,14 @@ function ElectionRow({ election }) {
       <td>{election.title}</td>
       <td>{election.createdAt}</td>
       <td>
-        <LinkContainer to={url}>
-          <Button variant="success" size="sm">
+        <LinkContainer to={urlVote}>
+          <Button variant="success" size="sm" className="me-2">
             Vote
+          </Button>
+        </LinkContainer>
+        <LinkContainer to={urlResult}>
+          <Button variant="success" size="sm">
+            View Result
           </Button>
         </LinkContainer>
       </td>

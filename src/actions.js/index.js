@@ -1,5 +1,5 @@
+import { useDispatch } from "react-redux";
 import * as service from "../services/FetchService.js";
-import { useDispatch, useSelector } from "react-redux";
 
 export const RECEIVE_VOTERS = "RECEIVE_VOTERS";
 export const ADD_NEW_ELECTION = "ADD_NEW_ELECTION";

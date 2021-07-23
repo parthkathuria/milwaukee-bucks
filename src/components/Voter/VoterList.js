@@ -1,9 +1,9 @@
+import { useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import { useState, useMemo } from "react";
-import data from "../../db.json";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   deleteVoter,
   getVoters,
@@ -88,15 +88,16 @@ const VoterList = ({ voters }) => {
       sortable: true,
     },
     {
-      name: "Last Name",
-      selector: "lastName",
-      sortable: true,
-    },
-    {
       name: "First Name",
       selector: "firstName",
       sortable: true,
     },
+    {
+      name: "Last Name",
+      selector: "lastName",
+      sortable: true,
+    },
+
     {
       name: "Address",
       selector: "address",

@@ -1,302 +1,107 @@
 {
   "voters": [
     {
-      "firstName": "dsafsdaf",
-      "lastName": "afdsafdsfs",
-      "address": "adsafdsaf",
-      "city": "sdaf",
-      "birthDate": "2021-07-01",
-      "email": "varorudson@gmail.com",
-      "phone": "4232276116",
-      "id": 2
+      "id": 1,
+      "firstName": "Parthasdfsdaf",
+      "lastName": "Kathuria",
+      "address": "123 Temp st.",
+      "city": "Mountain View",
+      "birthDate": "12/13/4134",
+      "email": "parth_kathuria@intuit.com",
+      "phone": "123445566",
+      "electionsCompleted": []
     },
     {
-      "firstName": "Rudson",
-      "lastName": "Varona",
-      "address": "123213",
-      "city": "West adsffdasf",
-      "birthDate": "2021-07-02",
-      "email": "varorudson@gmail.com",
-      "phone": "4232276116",
+      "id": 2,
+      "firstName": "Parthasdfsdaf",
+      "lastName": "Kathuria",
+      "address": "123 Temp st.",
+      "city": "Mountain View",
+      "birthDate": "12/13/4134",
+      "email": "abigail_zhang@intuit.com",
+      "phone": "123445566",
+      "electionsCompleted": []
+    },
+    {
+      "firstName": "adsf",
+      "lastName": "dsafadsf",
+      "address": "12321",
+      "city": "Mountain View",
+      "birthDate": "2021-07-07",
+      "email": "sdfgfds@gmail.com",
+      "phone": "12345677899",
       "id": 3
     },
     {
-      "firstName": "Rudson",
+      "firstName": "dsafdsaf",
       "lastName": "Varona",
-      "address": "123",
-      "city": "adsfsd",
-      "birthDate": "2021-07-14",
-      "email": "varorudson@gmail.com",
-      "phone": "1234567889",
-      "id": 4
-    },
-    {
-      "firstName": "Rudson",
-      "lastName": "Varona",
-      "address": "7818 Cowper Ave321321",
-      "city": "adsfs",
-      "birthDate": "2021-07-01",
-      "email": "varorudson@gmail.com",
-      "phone": "4232276116",
-      "id": 5
-    },
-    {
-      "firstName": "Assured",
-      "lastName": "Inc",
-      "address": "adsffs",
-      "city": "dsafds",
-      "birthDate": "2021-07-14",
-      "email": "varorudson@gmail.com",
-      "phone": "1234567889",
-      "id": 6
-    },
-    {
-      "firstName": "sdafdsaf",
-      "lastName": "dsaf",
-      "address": "sdaf",
-      "city": "Stanford",
+      "address": "7818 Cowper Ave",
+      "city": "West Hills",
       "birthDate": "2021-07-02",
       "email": "dsaf",
-      "phone": "1234567889",
-      "id": 7
-    },
-    {
-      "firstName": "Rudson",
-      "lastName": "Varona",
-      "address": "7818 Cowper Ave",
-      "city": "West Hills",
-      "birthDate": "2021-07-08",
-      "email": "varorudson@gmail.com",
       "phone": "4232276116",
-      "id": 8
-    },
-    {
-      "firstName": "Rudson",
-      "lastName": "Varona",
-      "address": "7818 Cowper Ave",
-      "city": "West Hills",
-      "birthDate": "2021-07-01",
-      "email": "varorudson@gmail.com",
-      "phone": "4232276116",
-      "id": 9
-    },
-    {
-      "firstName": "Rudsonsfsdafsdaf",
-      "lastName": "adsfdsafVaronasadfsadfsddsafsdaf",
-      "address": "7818 Cowper Ave",
-      "city": "West Hills",
-      "birthDate": "2021-07-01",
-      "email": "varorudson@gmail.com",
-      "phone": "4232276116",
-      "id": 10
+      "id": 4
     }
   ],
   "elections": [
     {
-      "id": 1,
-      "createdAt": "07/22/2021",
       "title": "Election 1",
-      "voterList": [],
+      "createdAt": "07/22/2021",
       "questions": [
         {
           "id": 1,
           "title": "What is the question?",
-          "yes": 0,
-          "no": 0
+          "yes": 4,
+          "no": 1
         },
         {
           "id": 2,
           "title": "What is the next question?",
           "yes": 0,
-          "no": 0
+          "no": 5
         }
-      ]
+      ],
+      "voterList": [
+        "parth_kathuria@intuit.com"
+      ],
+      "id": 1
     },
     {
+      "title": "c",
       "createdAt": "07/22/2021",
-      "title": "Election 2",
       "questions": [
         {
           "id": 1,
-          "title": "Q1",
+          "title": "d",
+          "yes": 2,
+          "no": 0
+        }
+      ],
+      "voterList": [
+        "abigail_zhang@intuit.com",
+        "parth_kathuria@intuit.com"
+      ],
+      "id": 2
+    },
+    {
+      "createdAt": "07/23/2021",
+      "title": "Election 1",
+      "questions": [
+        {
+          "id": 1,
+          "title": "A1",
           "yes": 0,
           "no": 0
         },
         {
           "id": 2,
-          "title": "Q2",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 2
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "sad",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
+          "title": "A2",
           "yes": 0,
           "no": 0
         }
       ],
       "voterList": [],
       "id": 3
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "hello",
-      "questions": [
-        {
-          "id": 1,
-          "title": "sd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 4
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "qwe",
-      "questions": [
-        {
-          "id": 1,
-          "title": "qwe",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 5
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "234sdf",
-      "questions": [
-        {
-          "id": 1,
-          "title": "qwerq",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 6
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "Hello",
-      "questions": [
-        {
-          "id": 1,
-          "title": "Ssle",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 7
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "Hlello",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 8
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "hello",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 9
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "asd",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 10
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "asd",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 11
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "Hello",
-      "questions": [
-        {
-          "id": 1,
-          "title": "asd",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 12
-    },
-    {
-      "createdAt": "07/22/2021",
-      "title": "rj test something",
-      "questions": [
-        {
-          "id": 1,
-          "title": "hi",
-          "yes": 0,
-          "no": 0
-        },
-        {
-          "id": 2,
-          "title": "asdfdsa",
-          "yes": 0,
-          "no": 0
-        },
-        {
-          "id": 3,
-          "title": "dsafsdaf",
-          "yes": 0,
-          "no": 0
-        }
-      ],
-      "voterList": [],
-      "id": 13
     }
   ]
 }

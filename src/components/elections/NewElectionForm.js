@@ -1,15 +1,13 @@
+import { push } from "connected-react-router";
 import { useState } from "react";
-import Form from "react-bootstrap/Form";
+import { Alert, Table } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { Table, Alert } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { createElections, getElections } from "../../services/FetchService";
+import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { createAddNewElection } from "../../actions.js";
-import { push } from "connected-react-router";
+import { createElections, getElections } from "../../services/FetchService";
 
 function NewElectionForm() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const addingNewElection = useSelector(
     (state) => state.appState.addingNewElection

@@ -32,7 +32,7 @@ function Home({ elections, voters, refreshElections, refreshVoters }) {
       <Button
         variant="success"
         disabled={isFetchingElection}
-        onClick={isFetchingElection || refreshElections}
+        onClick={!isFetchingElection ? refreshElections : null}
         size="sm"
       >
         {isFetchingElection ? "Refreshing..." : "Refresh"}
